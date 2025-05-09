@@ -11,4 +11,10 @@ public class FunRestController {
     public String sayHello(){
         return "Hello world :)";
     }
+
+    // expose a new endpoint
+    @GetMapping("/practice")
+    public String doSomeWork(){
+        return "I am practicing Dev-Tool right now ~~~!!";
+    }
 }
