@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class StudentDAOImpl implements StudentDAO{
-
+public class StudentDAOImpl implements StudentDAO {
     //Define field for entity manager.
     private EntityManager entityManager;
 
@@ -16,6 +15,11 @@ public class StudentDAOImpl implements StudentDAO{
     @Autowired
     public StudentDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    @Override
+    public Student findById(Integer Id) {
+        return entityManager.find(Student.class, Id);
     }
 
     //Implement save method.
