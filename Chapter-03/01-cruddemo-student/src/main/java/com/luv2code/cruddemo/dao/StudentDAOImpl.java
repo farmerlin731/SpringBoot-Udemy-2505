@@ -43,10 +43,17 @@ public class StudentDAOImpl implements StudentDAO {
         return theQuery.getResultList();
     }
 
+
     //Implement save method.
     @Override
     @Transactional
     public void save(Student theStudent) {
         entityManager.persist(theStudent);
+    }
+
+    @Override
+    @Transactional
+    public void update(Student theStudent) {
+        entityManager.merge(theStudent);
     }
 }

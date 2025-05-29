@@ -23,7 +23,8 @@ public class CruddemoApplication {
 //            createStudent(studentDAO);
 //            readStudent(studentDAO);
 //            queryForStudents(studentDAO);
-            queryStudentsByLastName(studentDAO);
+//            queryStudentsByLastName(studentDAO);
+            updateStudent(studentDAO);
         };
     }
 
@@ -75,5 +76,19 @@ public class CruddemoApplication {
         System.out.println("Finished! the saved student id :" + tmpStu.getId());
     }
 
+    private void updateStudent(StudentDAO studentDAO) {
+        System.out.println("Updating...");
 
+        //retrieve
+        int stuID = 1;
+        Student myStu = studentDAO.findById(stuID);
+
+        //update
+        myStu.setFirstName("George");
+        studentDAO.update(myStu);
+
+        //display
+        Student newStu = studentDAO.findById(stuID);
+        System.out.println("Result - id:" + stuID + ", and the student is" + newStu);
+    }
 }
