@@ -22,11 +22,20 @@ public class CruddemoApplication {
         return runner -> {
 //            createStudent(studentDAO);
 //            readStudent(studentDAO);
-            queryForStudents(studentDAO);
-
+//            queryForStudents(studentDAO);
+            queryStudentsByLastName(studentDAO);
         };
     }
 
+
+    private void queryStudentsByLastName(StudentDAO studentDAO) {
+        //get a list
+        List<Student> theStudents = studentDAO.findByLastName("Lin");
+        //display
+        for (Student tmpStu : theStudents) {
+            System.out.println(tmpStu);
+        }
+    }
 
     private void queryForStudents(StudentDAO studentDAO) {
         //get a list
