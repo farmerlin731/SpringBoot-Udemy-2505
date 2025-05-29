@@ -21,12 +21,13 @@ public class CruddemoApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {
 //            createStudent(studentDAO);
+            createMultiStudent(studentDAO);
 //            readStudent(studentDAO);
 //            queryForStudents(studentDAO);
 //            queryStudentsByLastName(studentDAO);
 //            updateStudent(studentDAO);
 //            deleteStudent(studentDAO);
-            deleteAllStudent(studentDAO);
+//            deleteAllStudent(studentDAO);
         };
     }
 
@@ -76,6 +77,20 @@ public class CruddemoApplication {
         studentDAO.save(tmpStu);
 
         System.out.println("Finished! the saved student id :" + tmpStu.getId());
+    }
+
+    private void createMultiStudent(StudentDAO studentDAO) {
+        System.out.println("Creating Multi-User...");
+        Student tmpStu = new Student("Farmer", "Lin", "tmp@gmail.com");
+        Student tmpStu2 = new Student("George", "Chen", "hahaaha@gmail.com");
+        Student tmpStu3 = new Student("Apple", "Wang", "apple@gmail.com");
+
+        System.out.println("Saving...");
+        studentDAO.save(tmpStu);
+        studentDAO.save(tmpStu2);
+        studentDAO.save(tmpStu3);
+
+        System.out.println("Finished! Multi-Users Saved!");
     }
 
     private void updateStudent(StudentDAO studentDAO) {
