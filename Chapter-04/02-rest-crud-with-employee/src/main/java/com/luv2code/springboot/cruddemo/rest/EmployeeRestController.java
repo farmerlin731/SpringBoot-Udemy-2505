@@ -2,9 +2,7 @@ package com.luv2code.springboot.cruddemo.rest;
 
 import com.luv2code.springboot.cruddemo.entity.Employee;
 import com.luv2code.springboot.cruddemo.service.EmployeeServiceImpl;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,34 @@ public class EmployeeRestController {
         return employeeService.findAll();
     }
 
+    //get one employee
+    @GetMapping("/employees/{employeeId}")
+    public Employee getEmployee(@PathVariable int employeeId) {
+        Employee myEmployee = employeeService.findById(employeeId);
 
+        if (myEmployee == null) {
+            throw new RuntimeException("Employee is not found - " + employeeId);
+        }
+        return myEmployee;
+    }
+
+    //add one employee @ database
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee theEmployee) {
+
+        // set the id=0 to force save a new item instead of updata
+        theEmployee.setId(0);
+        Employee dbEmployee = employeeService.save(theEmployee);
+
+        return dbEmployee;
+    }
+
+    //update
+    @PutMapping("employees")
+    public Employee updateEmployee(@RequestBody Employee theEmployee) {
+        Employee dbEmployee = employeeService.save(theEmployee);
+        return dbEmployee;
+    }
+
+    //delete
 }
