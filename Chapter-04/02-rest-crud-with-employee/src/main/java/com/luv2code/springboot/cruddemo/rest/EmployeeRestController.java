@@ -51,10 +51,21 @@ public class EmployeeRestController {
     }
 
     //update
-    @PutMapping("employees")
+    @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee theEmployee) {
         Employee dbEmployee = employeeService.save(theEmployee);
         return dbEmployee;
+    }
+
+    //delete
+    @DeleteMapping("/employees/{employeeId}")
+    public String deleteEmployee(@PathVariable int employeeId) {
+        Employee theEmployee = employeeService.findById(employeeId);
+        if (theEmployee == null) {
+            throw new RuntimeException("The employee is not found. id: " + employeeId);
+        }
+        employeeService.deleteById(employeeId);
+        return "the employee is deleted. id:" + employeeId;
     }
 
     //patch - partial update
@@ -94,5 +105,4 @@ public class EmployeeRestController {
     }
 
 
-    //delete
 }
