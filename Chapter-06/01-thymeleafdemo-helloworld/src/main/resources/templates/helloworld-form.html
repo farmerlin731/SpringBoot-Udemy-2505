@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <title>Hello World - Input Form</title>
     <!--ref to css file-->
-<!--    <link rel="stylesheet" th:href="@{/css/demo.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{/css/demo.css}">-->
 </head>
 
 <body>
-    <form th:action="@{/processForm}" method="GET">
+    <form th:action="@{/processFormV2}" method="GET">
         <input type="text" name="studentName"
-            placeholder="What's ur name?"/>
+               placeholder="What's ur name?"/>
 
         <input type="submit"/>
     </form>
