@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -21,7 +23,7 @@ public class HelloWorldController {
     }
 
     //read from dat & add data to model
-    @GetMapping("/processFormV2")
+    @RequestMapping("/processFormV2")
     public String letShoutDude(HttpServletRequest req, Model model) {
         //read the request param
         String theName = req.getParameter("studentName");
@@ -35,7 +37,7 @@ public class HelloWorldController {
     }
 
     //use another way to read param
-    @GetMapping("/processFormV3")
+    @PostMapping("/processFormV3")
     public String letShoutDudeV3(@RequestParam("studentName") String theName, Model model) {
         //convert the data to all caps
         theName = theName.toUpperCase();
