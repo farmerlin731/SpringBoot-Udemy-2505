@@ -17,10 +17,11 @@
         <br><br>
         Country:
         <select th:field="*{country}">
-            <option th:value="Brazil">Brazil</option>
-            <option th:value="Taipei">Taipei</option>
-            <option th:value="France">France</option>
-            <option th:value="Germany">Germany</option>
+            <!--            <option th:value="Brazil">Brazil</option>-->
+            <!--            <option th:value="Taipei">Taipei</option>-->
+            <!--            <option th:value="France">France</option>-->
+            <!--            <option th:value="Germany">Germany</option>-->
+            <option th:each="tmpCountry : ${countries}" th:value="${tmpCountry}" th:text="${tmpCountry}"></option>
         </select>
         <br><br>
         <input type="submit" value="Submit"/>
