@@ -46,6 +46,7 @@ public class EmployeeController {
         return ("employees/employee-form");
     }
 
+
     @PostMapping("/save")
     public String saveEmployee(
             @ModelAttribute("employee") Employee theEmployee) {
@@ -55,6 +56,12 @@ public class EmployeeController {
         System.out.println("hahaha:" + theEmployee.getFirstName());
 
         //redirect
+        return "redirect:/employees/list";
+    }
+
+    @GetMapping("/delete")
+    public String deleteEmployee(@RequestParam("employeeId") int theId) {
+        employeeService.deleteById(theId);
         return "redirect:/employees/list";
     }
 
