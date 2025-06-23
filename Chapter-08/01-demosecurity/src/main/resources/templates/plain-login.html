@@ -11,6 +11,11 @@
     <h3>My Custom Login Page</h3>
     <hr>
     <form action="#" th:action="@{/authenticateTheUser}" method="POST">
+        <!--error message-->
+        <div th:if="${param.error}">
+            <i>Sorry! Invalid Username or Password !</i>
+        </div>
+
         <p>
             User Name : <input type="text" name="username"/>
         </p>
