@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,5 +11,9 @@
     <h2>This is home page! :)</h2>
     <hr>
     <p>H e l l o w o r l d ~~~~~</p>
+    <!--log-out btn-->
+    <form action="#" th:action="@{/logout}" method="POST">
+        <input type="submit" value="Log-Out"/>
+    </form>
 </body>
 </html>
