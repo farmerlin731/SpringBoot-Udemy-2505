@@ -15,8 +15,9 @@
     <p> the user id : <span sec:authentication="principal.username"></span></p>
     <p> the user role(s) : <span sec:authentication="principal.authorities"></span></p>
     <hr>
-    <!--add a link to /leader & /admin-->
+    <!--add a link to /leaders & /systems-->
     <p><a th:href="@{/leaders}">Leadership Meeting</a>(only for manager peeps)</p>
+    <p><a th:href="@{/systems}">IT Systems Meeting</a>(only for admin peeps)</p>
     <hr>
     <!--log-out btn-->
     <form action="#" th:action="@{/logout}" method="POST">
