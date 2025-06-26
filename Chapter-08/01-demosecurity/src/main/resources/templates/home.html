@@ -16,8 +16,12 @@
     <p> the user role(s) : <span sec:authentication="principal.authorities"></span></p>
     <hr>
     <!--add a link to /leaders & /systems-->
-    <p><a th:href="@{/leaders}">Leadership Meeting</a>(only for manager peeps)</p>
-    <p><a th:href="@{/systems}">IT Systems Meeting</a>(only for admin peeps)</p>
+    <div sec:authorize="hasRole('MANAGER')">
+        <p><a th:href="@{/leaders}">Leadership Meeting</a>(only for manager peeps)</p>
+    </div>
+    <div sec:authorize="hasRole('ADMIN')">
+        <p><a th:href="@{/systems}">IT Systems Meeting</a>(only for admin peeps)</p>
+    </div>
     <hr>
     <!--log-out btn-->
     <form action="#" th:action="@{/logout}" method="POST">
