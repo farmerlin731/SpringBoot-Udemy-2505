@@ -18,7 +18,8 @@ public class CruddemoApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
-            createInstructor(appDAO);
+//            createInstructor(appDAO);
+            findInstructor(appDAO);
         };
     }
 
@@ -40,5 +41,13 @@ public class CruddemoApplication {
         System.out.println("Saving... the instructor:" + tmpInstructor);
         appDAO.save(tmpInstructor);
         System.out.println("Finished Saving!");
+    }
+
+    private void findInstructor(AppDAO appDAO) {
+        int theId = 2;
+        System.out.println("Reading...");
+        Instructor tmpInstructor = appDAO.findInstructorById(theId);
+        System.out.println("Finished Reading! the found instructor is " + tmpInstructor.getLastName() + " " + tmpInstructor.getFirstName());
+        System.out.println("And the detail is " + tmpInstructor.getInstructorDetail().toString());
     }
 }
