@@ -19,8 +19,9 @@ public class CruddemoApplication {
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
 //            createInstructor(appDAO);
-            findInstructor(appDAO);
+//            findInstructor(appDAO);
 //            deleteInstructor(appDAO);
+            findInstructorDetail(appDAO);
         };
     }
 
@@ -57,5 +58,13 @@ public class CruddemoApplication {
         System.out.println("Deleting... id:" + theId);
         appDAO.deleteInstructorById(theId);
         System.out.println("Done!");
+    }
+
+    private void findInstructorDetail(AppDAO appDAO) {
+        int theId = 2;
+        System.out.println("Reading...");
+        InstructorDetail tmpInstructorDetail = appDAO.findInstructorDetailById(theId);
+        System.out.println("Finished Reading! the found detail is " + tmpInstructorDetail.toString());
+        System.out.println("And the corresponding instructor is " + tmpInstructorDetail.getInstructor());
     }
 }
