@@ -15,4 +15,7 @@ public interface AppDAO {
 
     //Read Detail
     InstructorDetail findInstructorDetailById(int theId);
+
+    //Delete Detail
+    void deleteInstructorDetailById(int theId);
 }

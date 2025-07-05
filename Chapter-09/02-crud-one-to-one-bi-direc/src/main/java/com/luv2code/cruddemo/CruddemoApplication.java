@@ -21,7 +21,8 @@ public class CruddemoApplication {
 //            createInstructor(appDAO);
 //            findInstructor(appDAO);
 //            deleteInstructor(appDAO);
-            findInstructorDetail(appDAO);
+//            findInstructorDetail(appDAO);
+            deleteInstructorDetail(appDAO);
         };
     }
 
@@ -66,5 +67,12 @@ public class CruddemoApplication {
         InstructorDetail tmpInstructorDetail = appDAO.findInstructorDetailById(theId);
         System.out.println("Finished Reading! the found detail is " + tmpInstructorDetail.toString());
         System.out.println("And the corresponding instructor is " + tmpInstructorDetail.getInstructor());
+    }
+
+    private void deleteInstructorDetail(AppDAO appDAO) {
+        int theId = 2;
+        System.out.println("Deleting detail... id:" + theId);
+        appDAO.deleteInstructorDetailById(theId);
+        System.out.println("Done!");
     }
 }
