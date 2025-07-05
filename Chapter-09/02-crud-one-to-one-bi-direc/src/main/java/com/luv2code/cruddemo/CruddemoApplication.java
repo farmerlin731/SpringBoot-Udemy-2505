@@ -28,21 +28,23 @@ public class CruddemoApplication {
 
     private void createInstructor(AppDAO appDAO) {
         //Create instructor
-//        Instructor tmpInstructor = new Instructor("Farmer", "Lin", "hahaha@gmail.com");
-        Instructor tmpInstructor = new Instructor("George", "Chen", "hahaha@gmail.com");
+        Instructor tmpInstructor = new Instructor("Farmer", "Lin", "hahaha@gmail.com");
+        Instructor tmpInstructor2 = new Instructor("George", "Chen", "hahaha@gmail.com");
 
         //Create detail
-//        InstructorDetail tmpInstructorDetail = new InstructorDetail("http://www.luv2code.com/youtube", "skiing!!");
-        InstructorDetail tmpInstructorDetail = new InstructorDetail("http://www.luv2code.com/youtube", "dancing~~");
+        InstructorDetail tmpInstructorDetail = new InstructorDetail("http://www.luv2code.com/youtube", "skiing!!");
+        InstructorDetail tmpInstructorDetail2 = new InstructorDetail("http://www.luv2code.com/youtube", "dancing~~");
 
         //Link
         tmpInstructor.setInstructorDetail(tmpInstructorDetail);
+        tmpInstructor2.setInstructorDetail(tmpInstructorDetail2);
 
         //save
         //note: this will save the detail object
         //because of the cascade type
-        System.out.println("Saving... the instructor:" + tmpInstructor);
+        System.out.println("Saving... ");
         appDAO.save(tmpInstructor);
+        appDAO.save(tmpInstructor2);
         System.out.println("Finished Saving!");
     }
 
@@ -70,7 +72,7 @@ public class CruddemoApplication {
     }
 
     private void deleteInstructorDetail(AppDAO appDAO) {
-        int theId = 2;
+        int theId = 3;
         System.out.println("Deleting detail... id:" + theId);
         appDAO.deleteInstructorDetailById(theId);
         System.out.println("Done!");
