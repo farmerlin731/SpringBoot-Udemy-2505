@@ -1,6 +1,7 @@
 package com.luv2code.cruddemo;
 
 import com.luv2code.cruddemo.dao.AppDAO;
+import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +23,8 @@ public class CruddemoApplication {
 //            findInstructor(appDAO);
 //            deleteInstructor(appDAO);
 //            findInstructorDetail(appDAO);
-            deleteInstructorDetail(appDAO);
+//            deleteInstructorDetail(appDAO);
+            createInstructorWithCourse(appDAO);
         };
     }
 
@@ -46,6 +48,41 @@ public class CruddemoApplication {
         appDAO.save(tmpInstructor);
         appDAO.save(tmpInstructor2);
         System.out.println("Finished Saving!");
+    }
+
+    private void createInstructorWithCourse(AppDAO appDAO) {
+        //Create instructor
+        Instructor tmpInstructor = new Instructor("Mary", "Lin", "hahaha@gmail.com");
+        Instructor tmpInstructor2 = new Instructor("Susan", "Chen", "hahaha@gmail.com");
+
+        //Create detail & Link
+        InstructorDetail tmpInstructorDetail = new InstructorDetail("http://www.youtube.com", "skiing!!");
+        InstructorDetail tmpInstructorDetail2 = new InstructorDetail("http://www.google.com", "dancing~~");
+        tmpInstructor.setInstructorDetail(tmpInstructorDetail);
+        tmpInstructor2.setInstructorDetail(tmpInstructorDetail2);
+
+        //Create Course & Link
+        Course tmpCourse1 = new Course("Air Guitar - Beginner");
+        Course tmpCourse2 = new Course("Dance - Advanced");
+        Course tmpCourse3 = new Course("Coding - Java");
+        Course tmpCourse4 = new Course("Coding - GoLang");
+        tmpInstructor.add(tmpCourse1);
+        tmpInstructor.add(tmpCourse2);
+        tmpInstructor2.add(tmpCourse3);
+        tmpInstructor2.add(tmpCourse4);
+
+        //save
+        //note: this will save the detail & course
+        //because of the cascade type
+        System.out.println("Saving... " + tmpInstructor);
+        System.out.println("Course:" + tmpInstructor.getCourses());
+        System.out.println("Saving... " + tmpInstructor2);
+        System.out.println("Course:" + tmpInstructor2.getCourses());
+        appDAO.save(tmpInstructor);
+        appDAO.save(tmpInstructor2);
+        System.out.println("Finished Saving!");
+
+
     }
 
     private void findInstructor(AppDAO appDAO) {
