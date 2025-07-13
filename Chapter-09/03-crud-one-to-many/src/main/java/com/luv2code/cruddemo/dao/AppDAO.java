@@ -1,7 +1,10 @@
 package com.luv2code.cruddemo.dao;
 
+import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
+
+import java.util.List;
 
 public interface AppDAO {
     //Create
@@ -18,4 +21,7 @@ public interface AppDAO {
 
     //Delete Detail
     void deleteInstructorDetailById(int theId);
+
+    //Read Courses
+    List<Course> findCoursesByInstructorId(int theId);
 }

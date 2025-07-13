@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CruddemoApplication {
 
@@ -25,7 +27,8 @@ public class CruddemoApplication {
 //            findInstructorDetail(appDAO);
 //            deleteInstructorDetail(appDAO);
 //            createInstructorWithCourse(appDAO);
-            findInstructorWithCourse(appDAO);
+//            findInstructorWithCourse(appDAO);
+            findCoursesForInstructor(appDAO);
         };
     }
 
@@ -126,5 +129,23 @@ public class CruddemoApplication {
         System.out.println("Finished Reading! the found instructor is " + tmpInstructor.getLastName() + " " + tmpInstructor.getFirstName());
         System.out.println("And the courses are : " + tmpInstructor.getCourses());
 
+    }
+
+    private void findCoursesForInstructor(AppDAO appDAO) {
+
+        // Find Instructor
+        int theId = 1;
+        System.out.println("Reading Instructor...");
+        //lazy -> only find instructor
+        Instructor tmpInstructor = appDAO.findInstructorById(theId);
+        System.out.println("The found instructor is " + tmpInstructor.getLastName() + " " + tmpInstructor.getFirstName());
+
+        // Find Courses
+        System.out.println("Reading Courses...");
+        List<Course> courses = appDAO.findCoursesByInstructorId(theId);
+        tmpInstructor.setCourses(courses);
+        System.out.println("The courses are : " + tmpInstructor.getCourses());
+
+        System.out.println("Finish Reading...!");
     }
 }
