@@ -24,4 +24,8 @@ public interface AppDAO {
 
     //Read Courses
     List<Course> findCoursesByInstructorId(int theId);
+
+    //Read Instructor and courses at the same time
+    Instructor findInstructorByIdJoinFetch(int theId);
+
 }
