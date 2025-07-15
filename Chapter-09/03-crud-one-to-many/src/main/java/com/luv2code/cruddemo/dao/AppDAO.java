@@ -30,4 +30,10 @@ public interface AppDAO {
 
     //Update Instructor
     void update(Instructor tmpInstructor);
+
+    //Read Course by id
+    Course findCourseById(int theId);
+
+    //Update Course
+    void update(Course tmpCourse);
 }
