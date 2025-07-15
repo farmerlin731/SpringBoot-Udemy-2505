@@ -28,4 +28,6 @@ public interface AppDAO {
     //Read Instructor and courses at the same time
     Instructor findInstructorByIdJoinFetch(int theId);
 
+    //Update Instructor
+    void update(Instructor tmpInstructor);
 }

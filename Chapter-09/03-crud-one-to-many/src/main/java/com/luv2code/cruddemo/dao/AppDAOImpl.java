@@ -95,5 +95,9 @@ public class AppDAOImpl implements AppDAO {
         return tmpInstructor;
     }
 
-
+    @Override
+    @Transactional
+    public void update(Instructor tmpInstructor) {
+        entityManager.merge(tmpInstructor);
+    }
 }
