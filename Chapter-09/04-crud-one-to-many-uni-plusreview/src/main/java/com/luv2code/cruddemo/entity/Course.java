@@ -2,10 +2,12 @@ package com.luv2code.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "course")
 public class Course {
-    //fields
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +21,9 @@ public class Course {
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
 
     //constructors
     public Course() {
@@ -54,8 +59,22 @@ public class Course {
         this.instructor = instructor;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
 
-    //toString
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    //add a convenience method
+    public void addReview(Review theReview) {
+        if (reviews == null) {
+            reviews = new ArrayList<>();
+        }
+        //uni -> so u don't need to add 'this' @ theReview obj.
+        reviews.add(theReview);
+    }
 
     @Override
     public String toString() {
@@ -65,7 +84,5 @@ public class Course {
                 '}';
     }
 
-
-    //annotate field
 
 }
