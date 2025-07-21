@@ -4,6 +4,7 @@ import com.luv2code.cruddemo.dao.AppDAO;
 import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
+import com.luv2code.cruddemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +22,7 @@ public class CruddemoApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
-
+            createCourseAndReviews(appDAO);
         };
     }
 
@@ -185,5 +186,22 @@ public class CruddemoApplication {
         System.out.println("Deleting Course... id:" + theId);
         appDAO.deleteCourseById(theId);
         System.out.println("Done!");
+    }
+
+    private void createCourseAndReviews(AppDAO appDAO) {
+        //create course
+        Course tmpCourse = new Course("Dance - How to make big popping!");
+
+        //add review
+        tmpCourse.addReview(new Review("Good - by allen"));
+        tmpCourse.addReview(new Review("Bad - by Farmer"));
+
+        //save course
+        //save review at the same time because of cascadeType
+        System.out.println("Saving..." + tmpCourse);
+        System.out.println("Saving..." + tmpCourse.getReviews());
+        appDAO.save(tmpCourse);
+        System.out.println("Done!");
+
     }
 }
