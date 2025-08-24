@@ -1,10 +1,7 @@
 package com.luv2code.cruddemo;
 
 import com.luv2code.cruddemo.dao.AppDAO;
-import com.luv2code.cruddemo.entity.Course;
-import com.luv2code.cruddemo.entity.Instructor;
-import com.luv2code.cruddemo.entity.InstructorDetail;
-import com.luv2code.cruddemo.entity.Review;
+import com.luv2code.cruddemo.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +19,7 @@ public class CruddemoApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
-
+            createCourseAndStudents(appDAO);
         };
     }
 
@@ -221,6 +218,26 @@ public class CruddemoApplication {
         int theId = 10;
         System.out.println("Deleting ... the id is " + theId);
         appDAO.deleteCourseById(theId);
+        System.out.println("Done!");
+    }
+
+    private void createCourseAndStudents(AppDAO appDAO) {
+        //create a course
+        Course tmpCourse = new Course("Pacman - how to get 1 million!");
+
+        //create a student
+        Student tmpStu1 = new Student("John", "Doe", "tmpJ@gmail.com");
+        Student tmpStu2 = new Student("Farmer", "Lin", "tmpLin@gmail.com");
+
+        //add relationShip
+        tmpCourse.addStudent(tmpStu1);
+        tmpCourse.addStudent(tmpStu2);
+
+        //save
+        System.out.println("Saving... the course:" + tmpCourse);
+        System.out.println("Saving... the students:" + tmpCourse.getStudents());
+
+        appDAO.save(tmpCourse);
         System.out.println("Done!");
     }
 }
