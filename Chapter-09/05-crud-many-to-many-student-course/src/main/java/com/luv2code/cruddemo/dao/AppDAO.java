@@ -45,4 +45,7 @@ public interface AppDAO {
 
     //Read Course & reviews
     Course findCourseAndReviewsById(int theId);
+
+    //Read Course & Student
+    Course findCourseAndStudentsById(int theId);
 }
