@@ -20,7 +20,8 @@ public class CruddemoApplication {
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
 //            createCourseAndStudents(appDAO);
-            retrieveCourseAndStudents(appDAO);
+//            retrieveCourseAndStudents(appDAO);
+            retrieveStudentsAndCourse(appDAO);
         };
     }
 
@@ -252,5 +253,19 @@ public class CruddemoApplication {
         //print
         System.out.println("Finished! the course is " + tmpCourse.getTitle());
         System.out.println("And the students are" + tmpCourse.getStudents());
+    }
+
+    private void retrieveStudentsAndCourse(AppDAO appDAO) {
+
+        int theId = 2;
+
+        //retrieve data
+        System.out.println("Reading...");
+        Student tmpStu = appDAO.findStudentAndCourseByStdId(theId);
+
+        //print
+        System.out.println("Finished! the student is " + tmpStu.getLastName() + " " + tmpStu.getFirstName());
+        System.out.println("And the course are " + tmpStu.getCourses());
+
     }
 }

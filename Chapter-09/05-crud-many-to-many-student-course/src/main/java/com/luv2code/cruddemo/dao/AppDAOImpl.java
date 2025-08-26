@@ -3,6 +3,7 @@ package com.luv2code.cruddemo.dao;
 import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
+import com.luv2code.cruddemo.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -166,5 +167,20 @@ public class AppDAOImpl implements AppDAO {
         //Execute
         Course tmpCourse = query.getSingleResult();
         return tmpCourse;
+    }
+
+    public Student findStudentAndCourseByStdId(int theId) {
+        //Create Query
+        TypedQuery<Student> query = entityManager.createQuery(
+                "select s from Student s "
+                        + "join fetch s.courses "
+                        + "where s.id = :data", Student.class
+        );
+
+        query.setParameter("data", theId);
+
+        //Execute
+        Student tmpStu = query.getSingleResult();
+        return tmpStu;
     }
 }
