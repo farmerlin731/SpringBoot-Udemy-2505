@@ -22,7 +22,8 @@ public class CruddemoApplication {
 //            createCourseAndStudents(appDAO);
 //            retrieveCourseAndStudents(appDAO);
 //            retrieveStudentsAndCourse(appDAO);
-            updateStudent(appDAO);
+//            updateStudent(appDAO);
+            deleteStudent(appDAO);
         };
     }
 
@@ -281,5 +282,12 @@ public class CruddemoApplication {
         appDAO.update(tmpStudent);
         System.out.println("Updating Finished!");
 
+    }
+
+    private void deleteStudent(AppDAO appDAO) {
+        int theId = 1;
+        System.out.println("Deleting Student... id:" + theId);
+        appDAO.deleteStudentById(theId);
+        System.out.println("Done!");
     }
 }
