@@ -21,7 +21,8 @@ public class CruddemoApplication {
         return runner -> {
 //            createCourseAndStudents(appDAO);
 //            retrieveCourseAndStudents(appDAO);
-            retrieveStudentsAndCourse(appDAO);
+//            retrieveStudentsAndCourse(appDAO);
+            updateStudent(appDAO);
         };
     }
 
@@ -266,6 +267,19 @@ public class CruddemoApplication {
         //print
         System.out.println("Finished! the student is " + tmpStu.getLastName() + " " + tmpStu.getFirstName());
         System.out.println("And the course are " + tmpStu.getCourses());
+
+    }
+
+    private void updateStudent(AppDAO appDAO) {
+        int theId = 2;
+        System.out.println("Reading..");
+        Student tmpStudent = appDAO.findStudentAndCourseByStdId(theId);
+        System.out.println("Finished! the student is" + tmpStudent);
+
+        System.out.println("Updating...");
+        tmpStudent.setLastName("Test");
+        appDAO.update(tmpStudent);
+        System.out.println("Updating Finished!");
 
     }
 }
