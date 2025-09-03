@@ -8,4 +8,9 @@ public class AccountDAOimpl implements AccountDAO {
     public void addAccount() {
         System.out.println(getClass() + " : Hello - Create Account! :)");
     }
+
+    @Override
+    public void addSillyMember() {
+        System.out.println(getClass() + " : Hello - Create Member! :)");
+    }
 }

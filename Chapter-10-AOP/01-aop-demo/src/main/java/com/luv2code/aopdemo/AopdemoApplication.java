@@ -24,9 +24,7 @@ public class AopdemoApplication {
         //call method
         theAccountDAO.addAccount();
 
-        //call it again
-        System.out.println("\nlet's call again! :)");
-        theAccountDAO.addAccount();
+        theAccountDAO.addSillyMember();
     }
 
 }
