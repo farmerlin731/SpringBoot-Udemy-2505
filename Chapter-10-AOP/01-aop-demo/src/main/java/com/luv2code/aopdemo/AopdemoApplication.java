@@ -25,6 +25,9 @@ public class AopdemoApplication {
         theAccountDAO.addAccount();
 
         theAccountDAO.addSillyMember();
+
+        Account tmpAccount = new Account();
+        theAccountDAO.addAccount(tmpAccount);
     }
 
 }
