@@ -13,6 +13,16 @@ public class MyDemoLoggingAspect {
     private void forDaoPackage() {
     }
 
+    // getter
+    @Pointcut("execution(* com.luv2code.aopdemo.dao.*.get*(..))")
+    private void forGetter() {
+    }
+
+    // setter
+    @Pointcut("execution(* com.luv2code.aopdemo.dao.*.set*(..))")
+    private void forSetter() {
+    }
+
     @Before("forDaoPackage()")
     public void beforeAddAccountAdvice() {
         System.out.println("\n========= Executing @Before Aspect ===========");
@@ -22,4 +32,10 @@ public class MyDemoLoggingAspect {
     public void performApi() {
         System.out.println("========= Perform API ===========");
     }
+
+    @Before("forDaoPackage() && !(forGetter()||forSetter())")
+    public void beforeDaoExcludeGetAndSet() {
+        System.out.println("========= @Before Dao Exclude Getter & Setter ===========");
+    }
+
 }

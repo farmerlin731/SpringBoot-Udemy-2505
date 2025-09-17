@@ -26,6 +26,12 @@ public class AopdemoApplication {
         theAccountDAO.addAccount(tmpAccount);
 
         theAccountDAO.doWork();
+
+        //call getter & setter
+        theAccountDAO.setName("Harry");
+        theAccountDAO.getName();
+        theAccountDAO.setServiceCode("CODE3345678");
+        theAccountDAO.getServiceCode();
     }
 
 }
