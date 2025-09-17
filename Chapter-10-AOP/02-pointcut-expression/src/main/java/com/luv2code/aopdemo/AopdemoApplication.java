@@ -22,12 +22,10 @@ public class AopdemoApplication {
 
     private void demoTheBeforeAdvice(AccountDAO theAccountDAO) {
         //call method
-        theAccountDAO.addAccount();
-
-        theAccountDAO.addSillyMember();
-
         Account tmpAccount = new Account();
         theAccountDAO.addAccount(tmpAccount);
+
+        theAccountDAO.doWork();
     }
 
 }

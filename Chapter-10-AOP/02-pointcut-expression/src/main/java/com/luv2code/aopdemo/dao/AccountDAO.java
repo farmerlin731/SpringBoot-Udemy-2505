@@ -3,9 +3,9 @@ package com.luv2code.aopdemo.dao;
 import com.luv2code.aopdemo.Account;
 
 public interface AccountDAO {
-    void addAccount();
 
-    void addSillyMember();
 
     void addAccount(Account theAccount);
+
+    boolean doWork();
 }
