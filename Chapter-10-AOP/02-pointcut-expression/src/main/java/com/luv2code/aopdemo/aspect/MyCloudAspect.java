@@ -6,12 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class MyDemoLoggingAspect {
-
+public class MyCloudAspect {
     @Before("com.luv2code.aopdemo.aspect.luvExpression.forDaoNoGetterSetter()")
-    public void beforeAddAccountAdvice() {
-        System.out.println("========= @@ Before Accout Advice ===========");
+    public void logCloud() {
+        System.out.println("========= $$ Cloud Logging ===========");
     }
-
-
 }
