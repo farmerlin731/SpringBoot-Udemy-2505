@@ -21,10 +21,10 @@ public class AopdemoApplication {
     }
 
     private void demoTheBeforeAdvice(AccountDAO theAccountDAO) {
-        //call method
-        Account tmpAccount = new Account();
+        //method 1
+        Account tmpAccount = new Account("Farmer", "Golden");
         theAccountDAO.addAccount(tmpAccount);
-
+        //method 2
         theAccountDAO.doWork();
 
         //call getter & setter
