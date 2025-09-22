@@ -25,6 +25,12 @@ public class MyDemoLoggingAspect {
         System.out.println("In After-Returning AOP:");
         System.out.println("Method:" + method);
         System.out.println("Result:" + result);
+
+        //Convert the data.
+        for (Account ac : result) {
+            String newName = ac.getName().toUpperCase();
+            ac.setName(newName);
+        }
     }
 
     @Before("com.luv2code.aopdemo.aspect.luvExpression.forDaoNoGetterSetter()")

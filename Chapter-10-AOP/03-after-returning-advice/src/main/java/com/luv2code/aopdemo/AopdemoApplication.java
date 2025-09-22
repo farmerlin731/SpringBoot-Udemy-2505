@@ -27,6 +27,5 @@ public class AopdemoApplication {
         System.out.println("----------------------");
         System.out.println("In Main Function:");
         System.out.println("Result:" + tmpList);
-
     }
 }
