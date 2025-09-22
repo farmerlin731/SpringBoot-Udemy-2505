@@ -2,20 +2,30 @@ package com.luv2code.aopdemo.aspect;
 
 import com.luv2code.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Aspect
 @Component
 @Order(1)
 public class MyDemoLoggingAspect {
 
-    private static final Logger log = LoggerFactory.getLogger(MyDemoLoggingAspect.class);
+    @AfterReturning(
+            pointcut = "execution(* com.luv2code.aopdemo.dao.*.*(..))",
+            returning = "result")
+    public void afterReturningAccountAdvice(JoinPoint theJoinPoint, List<Account> result) {
+        String method = theJoinPoint.getSignature().toShortString();
+        System.out.println("----------------------");
+        System.out.println("In After-Returning AOP:");
+        System.out.println("Method:" + method);
+        System.out.println("Result:" + result);
+    }
 
     @Before("com.luv2code.aopdemo.aspect.luvExpression.forDaoNoGetterSetter()")
     public void beforeAddAccountAdvice(JoinPoint theJoinPoint) {
