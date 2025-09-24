@@ -18,8 +18,24 @@ public class AopdemoApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AccountDAO accountDAO) {
         return runner -> {
-            testAfterAdvice(accountDAO);
+//            testAfterAdvice(accountDAO);
+            testThrowingAdvice(accountDAO);
         };
+    }
+
+    public void testThrowingAdvice(AccountDAO accountDAO) {
+        List<Account> tmpList = null;
+        try {
+            boolean excHappen = true;
+            tmpList = accountDAO.findAccounts(excHappen);
+            System.out.println("----------------------");
+            System.out.println("In Main Function:");
+            System.out.println("Result:" + tmpList);
+        } catch (Exception exc) {
+            System.out.println("----------------------");
+            System.out.println("In Main Function:");
+            System.out.println("Exception:" + exc);
+        }
     }
 
     public void testAfterAdvice(AccountDAO accountDAO) {
@@ -28,4 +44,6 @@ public class AopdemoApplication {
         System.out.println("In Main Function:");
         System.out.println("Result:" + tmpList);
     }
+
+
 }

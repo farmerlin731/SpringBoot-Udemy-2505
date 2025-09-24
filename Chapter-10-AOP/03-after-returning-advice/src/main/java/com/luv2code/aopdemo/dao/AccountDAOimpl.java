@@ -25,6 +25,12 @@ public class AccountDAOimpl implements AccountDAO {
 
     @Override
     public List<Account> findAccounts() {
+        return this.findAccounts(false);
+    }
+
+    @Override
+    public List<Account> findAccounts(boolean excHappen) {
+        if (excHappen) throw new RuntimeException("U got an ERROR ~~!!");
         List<Account> result = new ArrayList<>();
         Account tmpAc1 = new Account("john", "gold");
         Account tmpAc2 = new Account("mary", "silver");
