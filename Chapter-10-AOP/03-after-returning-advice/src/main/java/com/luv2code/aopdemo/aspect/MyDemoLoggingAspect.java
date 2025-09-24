@@ -3,6 +3,7 @@ package com.luv2code.aopdemo.aspect;
 import com.luv2code.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -15,6 +16,17 @@ import java.util.List;
 @Component
 @Order(1)
 public class MyDemoLoggingAspect {
+
+    @AfterThrowing(
+            pointcut = "execution(* com.luv2code.aopdemo.dao.*.*(..))",
+            throwing = "theExc")
+    public void afterThrowingAccountAdvice(JoinPoint theJoinPoint, Throwable theExc) {
+        String method = theJoinPoint.getSignature().toShortString();
+        System.out.println("----------------------");
+        System.out.println("In After-Throwing AOP:");
+        System.out.println("Method:" + method);
+        System.out.println("Exception:" + theExc);
+    }
 
     @AfterReturning(
             pointcut = "execution(* com.luv2code.aopdemo.dao.*.*(..))",
