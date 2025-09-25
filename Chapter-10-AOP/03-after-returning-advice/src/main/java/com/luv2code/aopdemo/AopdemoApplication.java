@@ -19,9 +19,26 @@ public class AopdemoApplication {
     public CommandLineRunner commandLineRunner(AccountDAO accountDAO) {
         return runner -> {
 //            testAfterAdvice(accountDAO);
-            testThrowingAdvice(accountDAO);
+//            testThrowingAdvice(accountDAO);
+            testFinallyAdvice(accountDAO);
         };
     }
+
+    public void testFinallyAdvice(AccountDAO accountDAO) {
+        List<Account> tmpList = null;
+        try {
+            boolean excHappen = false;
+            tmpList = accountDAO.findAccounts(excHappen);
+            System.out.println("----------------------");
+            System.out.println("In Main Function:");
+            System.out.println("Result:" + tmpList);
+        } catch (Exception exc) {
+            System.out.println("----------------------");
+            System.out.println("In Main Function:");
+            System.out.println("Exception:" + exc);
+        }
+    }
+
 
     public void testThrowingAdvice(AccountDAO accountDAO) {
         List<Account> tmpList = null;
