@@ -2,6 +2,7 @@ package com.luv2code.aopdemo.aspect;
 
 import com.luv2code.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
@@ -13,6 +14,17 @@ import java.util.List;
 @Component
 @Order(1)
 public class MyDemoLoggingAspect {
+
+    @Around("execution(* com.luv2code.aopdemo.service.*.*(..))")
+    public Object aroundFortuneAdvice(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
+        System.out.println("----------------------");
+        System.out.println("In Around AOP:");
+        long startTime = System.currentTimeMillis();
+        Object result = theProceedingJoinPoint.proceed();
+        long endTime = System.currentTimeMillis();
+        System.out.println("Duration is : " + (endTime - startTime) / 1000 + " seconds.");
+        return result + " (through AOP aspect)";
+    }
 
     @After("execution(* com.luv2code.aopdemo.dao.*.*(..))")
     public void afterFinallyAccountAdvice(JoinPoint theJoinPoint) {

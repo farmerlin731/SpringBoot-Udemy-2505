@@ -24,6 +24,7 @@ public class AopdemoApplication {
     }
 
     public void testAroundAdvice(TrafficFortuneSevice theTrafficFortuneSevice) {
+        System.out.println("Calling Fortune...");
         String result = theTrafficFortuneSevice.getFortune();
         System.out.println("----------------------");
         System.out.println("In Main Function:");
