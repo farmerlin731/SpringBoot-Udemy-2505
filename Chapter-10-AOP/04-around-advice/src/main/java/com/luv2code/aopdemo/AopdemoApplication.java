@@ -1,6 +1,7 @@
 package com.luv2code.aopdemo;
 
 import com.luv2code.aopdemo.dao.AccountDAO;
+import com.luv2code.aopdemo.service.TrafficFortuneSevice;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,12 +17,17 @@ public class AopdemoApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(AccountDAO accountDAO) {
+    public CommandLineRunner commandLineRunner(TrafficFortuneSevice theTrafficFortuneSevice) {
         return runner -> {
-//            testAfterAdvice(accountDAO);
-//            testThrowingAdvice(accountDAO);
-            testFinallyAdvice(accountDAO);
+            testAroundAdvice(theTrafficFortuneSevice);
         };
+    }
+
+    public void testAroundAdvice(TrafficFortuneSevice theTrafficFortuneSevice) {
+        String result = theTrafficFortuneSevice.getFortune();
+        System.out.println("----------------------");
+        System.out.println("In Main Function:");
+        System.out.println("Result:" + result);
     }
 
     public void testFinallyAdvice(AccountDAO accountDAO) {
