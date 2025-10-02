@@ -20,7 +20,13 @@ public class MyDemoLoggingAspect {
         System.out.println("----------------------");
         System.out.println("In Around AOP:");
         long startTime = System.currentTimeMillis();
-        Object result = theProceedingJoinPoint.proceed();
+        Object result = null;
+        try {
+            result = theProceedingJoinPoint.proceed();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            result = "Major Accident! Highway Closed! But...AOP already handle it !";
+        }
         long endTime = System.currentTimeMillis();
         System.out.println("Duration is : " + (endTime - startTime) / 1000 + " seconds.");
         return result + " (through AOP aspect)";

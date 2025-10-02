@@ -19,8 +19,19 @@ public class AopdemoApplication {
     @Bean
     public CommandLineRunner commandLineRunner(TrafficFortuneSevice theTrafficFortuneSevice) {
         return runner -> {
-            testAroundAdvice(theTrafficFortuneSevice);
+//            testAroundAdvice(theTrafficFortuneSevice);
+            testAroundHandleExc(theTrafficFortuneSevice);
         };
+    }
+
+
+    public void testAroundHandleExc(TrafficFortuneSevice theTrafficFortuneSevice) {
+        boolean excHappen = true;
+        System.out.println("Calling Fortune... And the Exception Flag is : " + excHappen);
+        String result = theTrafficFortuneSevice.getFortune(excHappen);
+        System.out.println("----------------------");
+        System.out.println("In Main Function:");
+        System.out.println("Result:" + result);
     }
 
     public void testAroundAdvice(TrafficFortuneSevice theTrafficFortuneSevice) {

@@ -16,4 +16,11 @@ public class TrafficFortuneSeviceImpl implements TrafficFortuneSevice {
         }
         return "Hello Traffic Fortune :)";
     }
+
+    @Override
+    public String getFortune(boolean excHappen) {
+        if (excHappen) throw new RuntimeException("Major Accident! Highway Closed!");
+
+        return getFortune();
+    }
 }
