@@ -23,13 +23,16 @@ public class MyDemoLoggingAspect {
         Object result = null;
         try {
             result = theProceedingJoinPoint.proceed();
+            return result + " (through AOP aspect)";
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            result = "Major Accident! Highway Closed! But...AOP already handle it !";
+//            result = "Major Accident! Highway Closed! But...AOP already handle it !";
+            System.out.println("This time we want rethrow exc!");
+            throw e;
         }
-        long endTime = System.currentTimeMillis();
-        System.out.println("Duration is : " + (endTime - startTime) / 1000 + " seconds.");
-        return result + " (through AOP aspect)";
+//        long endTime = System.currentTimeMillis();
+//        System.out.println("Duration is : " + (endTime - startTime) / 1000 + " seconds.");
     }
 
     @After("execution(* com.luv2code.aopdemo.dao.*.*(..))")

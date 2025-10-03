@@ -20,10 +20,20 @@ public class AopdemoApplication {
     public CommandLineRunner commandLineRunner(TrafficFortuneSevice theTrafficFortuneSevice) {
         return runner -> {
 //            testAroundAdvice(theTrafficFortuneSevice);
-            testAroundHandleExc(theTrafficFortuneSevice);
+//            testAroundHandleExc(theTrafficFortuneSevice);
+            testAroundRethrowExc(theTrafficFortuneSevice);
         };
     }
 
+
+    public void testAroundRethrowExc(TrafficFortuneSevice theTrafficFortuneSevice) {
+        boolean excHappen = false;
+        System.out.println("Calling Fortune... And the Exception Flag is : " + excHappen);
+        String result = theTrafficFortuneSevice.getFortune(excHappen);
+        System.out.println("----------------------");
+        System.out.println("In Main Function:");
+        System.out.println("Result:" + result);
+    }
 
     public void testAroundHandleExc(TrafficFortuneSevice theTrafficFortuneSevice) {
         boolean excHappen = true;
