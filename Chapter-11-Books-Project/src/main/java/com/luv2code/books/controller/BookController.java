@@ -2,6 +2,7 @@ package com.luv2code.books.controller;
 
 import com.luv2code.books.entity.Book;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -31,5 +32,15 @@ public class BookController {
     @GetMapping("/api/books")
     public List<Book> getBooks() {
         return books;
+    }
+
+
+    @GetMapping("/api/books/{title}")
+    public Book getBookByTitle(@PathVariable String title) {
+        Book result = books.stream()
+                .filter(book -> book.getName().equalsIgnoreCase(title))
+                .findFirst()
+                .orElse(null);
+        return result;
     }
 }
