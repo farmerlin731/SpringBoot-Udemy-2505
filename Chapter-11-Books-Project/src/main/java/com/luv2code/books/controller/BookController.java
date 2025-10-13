@@ -55,12 +55,18 @@ public class BookController {
     }
 
     @PutMapping("/api/books/{title}")
-    public void updateBook(@RequestParam String title, @RequestBody Book updatedBook) {
+    public void updateBook(@PathVariable String title, @RequestBody Book updatedBook) {
         for (int i = 0; i < books.size(); i++) {
             if (books.get(i).getName().equalsIgnoreCase(title)) {
                 books.set(i, updatedBook);
                 return;
             }
         }
+    }
+
+    @DeleteMapping("/api/books/{title}")
+    public String deleteBook(@PathVariable String title) {
+        books.removeIf(book -> book.getName().equalsIgnoreCase(title));
+        return "Delete Finished!";
     }
 }
