@@ -18,12 +18,12 @@ public class BookController {
 
     private void initBooks() {
         books.addAll(List.of(
-                new Book("The Silent Observer", "Alice Johnson", "Mystery"),
-                new Book("Journey to the Stars", "David Kim", "Technology"),
-                new Book("The Art of Simplicity", "Marie Chen", "Cooking"),
-                new Book("Hidden Gardens", "Liam Wong", "Lifestyle"),
-                new Book("Culinary Adventures", "Sophia Garcia", "Cooking"),
-                new Book("The Code of Tomorrow", "Ethan Brown", "Technology")
+                new Book(1, "The Silent Observer", "Alice Johnson", "Mystery", 7),
+                new Book(2, "Journey to the Stars", "David Kim", "Technology", 10),
+                new Book(3, "The Art of Simplicity", "Marie Chen", "Cooking", 1),
+                new Book(4, "Hidden Gardens", "Liam Wong", "Lifestyle", 7),
+                new Book(5, "Culinary Adventures", "Sophia Garcia", "Cooking", 2),
+                new Book(6, "The Code of Tomorrow", "Ethan Brown", "Technology", 5)
         ));
     }
 
