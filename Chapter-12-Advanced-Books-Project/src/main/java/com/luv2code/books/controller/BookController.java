@@ -38,10 +38,10 @@ public class BookController {
     }
 
 
-    @GetMapping("/{title}")
-    public Book getBookByTitle(@PathVariable String title) {
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable int id) {
         Book result = books.stream()
-                .filter(book -> book.getName().equalsIgnoreCase(title))
+                .filter(book -> book.getId() == id)
                 .findFirst()
                 .orElse(null);
         return result;
@@ -55,19 +55,19 @@ public class BookController {
         if (isNew) books.add(newBook);
     }
 
-    @PutMapping("/{title}")
-    public void updateBook(@PathVariable String title, @RequestBody Book updatedBook) {
+    @PutMapping("/{id}")
+    public void updateBook(@PathVariable int id, @RequestBody Book updatedBook) {
         for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getName().equalsIgnoreCase(title)) {
+            if (books.get(i).getId() == id) {
                 books.set(i, updatedBook);
                 return;
             }
         }
     }
 
-    @DeleteMapping("/{title}")
-    public String deleteBook(@PathVariable String title) {
-        books.removeIf(book -> book.getName().equalsIgnoreCase(title));
+    @DeleteMapping("/{id}")
+    public String deleteBook(@PathVariable int id) {
+        books.removeIf(book -> book.getId() == id);
         return "Delete Finished!";
     }
 }
