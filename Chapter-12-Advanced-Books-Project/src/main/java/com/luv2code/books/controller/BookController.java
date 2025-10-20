@@ -52,14 +52,15 @@ public class BookController {
     public void createBook(@RequestBody BookRequest theBookRequest) {
         //determine the id
         int id = books.isEmpty() ? 1 : books.getLast().getId() + 1;
-        
+
         books.add(converToBook(id, theBookRequest));
     }
 
     @PutMapping("/{id}")
-    public void updateBook(@PathVariable int id, @RequestBody Book updatedBook) {
+    public void updateBook(@PathVariable int id, @RequestBody BookRequest theBookRequest) {
         for (int i = 0; i < books.size(); i++) {
             if (books.get(i).getId() == id) {
+                Book updatedBook = converToBook(id, theBookRequest);
                 books.set(i, updatedBook);
                 return;
             }
