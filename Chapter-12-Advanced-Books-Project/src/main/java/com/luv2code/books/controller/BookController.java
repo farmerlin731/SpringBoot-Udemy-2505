@@ -2,6 +2,8 @@ package com.luv2code.books.controller;
 
 import com.luv2code.books.entity.Book;
 import com.luv2code.books.request.BookRequest;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//for swagger
+@Tag(name = "Books Rest Api Endpoints", description = "operations related to books")
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -31,6 +35,8 @@ public class BookController {
         ));
     }
 
+    //for swagger
+    @Operation(summary = "Get All Books", description = "get a list from server")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<Book> getBooks(@RequestParam(required = false) String category) {
