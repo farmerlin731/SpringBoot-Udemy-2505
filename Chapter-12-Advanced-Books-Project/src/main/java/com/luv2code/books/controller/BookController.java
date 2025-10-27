@@ -73,19 +73,28 @@ public class BookController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void updateBook(@PathVariable @Min(value = 1) int id, @Valid @RequestBody BookRequest theBookRequest) {
+    public Book updateBook(@PathVariable @Min(value = 1) int id, @Valid @RequestBody BookRequest theBookRequest) {
         for (int i = 0; i < books.size(); i++) {
             if (books.get(i).getId() == id) {
                 Book updatedBook = converToBook(id, theBookRequest);
                 books.set(i, updatedBook);
-                return;
+                return updatedBook;
             }
         }
+
+        throw new BookNotFoundException("Book not found - " + id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public String deleteBook(@PathVariable @Min(value = 1) int id) {
+
+        // BOOK NOT FOUND EXCEPTION
+        books.stream()
+                .filter(book -> book.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new BookNotFoundException("Book not found - " + id));
+
         books.removeIf(book -> book.getId() == id);
         return "Delete Finished!";
     }
@@ -94,7 +103,7 @@ public class BookController {
         return new Book(id, theBookRequest.getName(), theBookRequest.getAuthor(), theBookRequest.getCategory(), theBookRequest.getRating());
     }
 
-
+    @ExceptionHandler
     public ResponseEntity<BookErrorResponse> handleException(BookNotFoundException exc) {
         BookErrorResponse res = new BookErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
