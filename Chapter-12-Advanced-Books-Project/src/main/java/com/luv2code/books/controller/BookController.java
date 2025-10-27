@@ -114,4 +114,17 @@ public class BookController {
         return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
     }
 
+
+    //global exception
+    @ExceptionHandler
+    public ResponseEntity<BookErrorResponse> handleException(Exception exc) {
+        BookErrorResponse res = new BookErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+//                exc.getMessage(),
+                "Invalid Request",
+                System.currentTimeMillis()
+        );
+
+        return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+    }
 }
