@@ -30,15 +30,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         Employee result = employeeDao.findById(theId);
 
-        Employee theEmployee = null;
-
+//        Employee theEmployee = null;
+//
 //        if (result.isPresent()) {
 //            theEmployee = result.get();
 //        } else {
 //            throw new RuntimeException("Did not find employee id - " + theId);
 //        }
 
-        return theEmployee;
+        return result;
     }
 
     @Transactional
