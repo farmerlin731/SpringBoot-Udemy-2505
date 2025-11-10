@@ -45,4 +45,10 @@ public class EmployeeRestController {
         Employee theEmployee = employeeService.update(id, employeeRequest);
         return theEmployee;
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteEmployee(@PathVariable @Min(value = 1) long id) {
+        employeeService.deleteById(id);
+    }
 }
