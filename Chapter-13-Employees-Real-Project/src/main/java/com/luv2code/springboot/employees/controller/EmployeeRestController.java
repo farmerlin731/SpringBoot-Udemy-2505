@@ -38,4 +38,11 @@ public class EmployeeRestController {
         Employee dbEmployee = employeeService.save(employeeRequest);
         return dbEmployee;
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public Employee updateEmployee(@PathVariable @Min(value = 1) long id, @Valid @RequestBody EmployeeRequest employeeRequest) {
+        Employee theEmployee = employeeService.update(id, employeeRequest);
+        return theEmployee;
+    }
 }
