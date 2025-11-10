@@ -1,7 +1,9 @@
 package com.luv2code.springboot.employees.controller;
 
 import com.luv2code.springboot.employees.entity.Employee;
+import com.luv2code.springboot.employees.request.EmployeeRequest;
 import com.luv2code.springboot.employees.service.EmployeeService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,5 +30,12 @@ public class EmployeeRestController {
     public Employee getSingleEmployee(@PathVariable @Min(value = 1) long id) {
         Employee theEmployee = employeeService.findById(id);
         return theEmployee;
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping()
+    public Employee createEmployee(@Valid @RequestBody EmployeeRequest employeeRequest) {
+        Employee dbEmployee = employeeService.save(employeeRequest);
+        return dbEmployee;
     }
 }
