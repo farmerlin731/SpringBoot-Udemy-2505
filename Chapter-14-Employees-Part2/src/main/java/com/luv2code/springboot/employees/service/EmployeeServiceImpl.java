@@ -1,6 +1,6 @@
 package com.luv2code.springboot.employees.service;
 
-import com.luv2code.springboot.employees.dao.EmployeeDAO;
+import com.luv2code.springboot.employees.dao.EmployeeRespository;
 import com.luv2code.springboot.employees.entity.Employee;
 import com.luv2code.springboot.employees.request.EmployeeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,51 +8,53 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeDAO employeeDao;
+    private EmployeeRespository theEmployeeRespository;
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeDAO theEmployeeRepository) {
-        employeeDao = theEmployeeRepository;
+    public EmployeeServiceImpl(EmployeeRespository theEmployeeRepository) {
+        theEmployeeRespository = theEmployeeRepository;
     }
 
 
     @Override
     public List<Employee> findAll() {
-        return employeeDao.findAll();
+        return theEmployeeRespository.findAll();
     }
 
     @Override
     public Employee findById(long theId) {
 
-        Employee result = employeeDao.findById(theId);
+        Optional<Employee> result = theEmployeeRespository.findById(theId);
 
-//        Employee theEmployee = null;
-//
-//        if (result.isPresent()) {
-//            theEmployee = result.get();
-//        } else {
-//            throw new RuntimeException("Did not find employee id - " + theId);
-//        }
+        Employee theEmployee = null;
 
-        return result;
+        //Only part need to be modified.
+        if (result.isPresent()) {
+            theEmployee = result.get();
+        } else {
+            throw new RuntimeException("Did not find employee id - " + theId);
+        }
+
+        return theEmployee;
     }
 
     @Transactional
     @Override
     public Employee save(EmployeeRequest employeeRequest) {
         Employee theEmployee = convertToEmployee(0, employeeRequest);
-        return employeeDao.save(theEmployee);
+        return theEmployeeRespository.save(theEmployee);
     }
 
     @Transactional
     @Override
     public Employee update(long id, EmployeeRequest employeeRequest) {
         Employee theEmployee = convertToEmployee(id, employeeRequest);
-        return employeeDao.save(theEmployee);
+        return theEmployeeRespository.save(theEmployee);
     }
 
     @Override
@@ -65,6 +67,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     @Override
     public void deleteById(long theId) {
-        employeeDao.deleteById(theId);
+        theEmployeeRespository.deleteById(theId);
     }
 }
